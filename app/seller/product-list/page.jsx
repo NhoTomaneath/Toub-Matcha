@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from "react";
-import { assets, productsDummyData } from "@/assets/assets";
+import { assets, productsDummyData } from "@/public/assets/assets";
 import Image from "next/image";
 import { useAppContext } from "@/context/AppContext";
 import Footer from "@/components/seller/Footer";
@@ -58,7 +58,7 @@ const ProductList = () => {
                   <td className="px-4 py-3 max-sm:hidden">{product.category}</td>
                   <td className="px-4 py-3">${product.offerPrice}</td>
                   <td className="px-4 py-3 max-sm:hidden">
-                    <button onClick={() => router.push(`/product/${product._id}`)} className="flex items-center gap-1 px-1.5 md:px-3.5 py-2 bg-orange-600 text-white rounded-md">
+                    <button onClick={() => router.push(`/product/${product._id}`)} className="flex items-center gap-1 px-1.5 md:px-3.5 py-2 bg-green-600 text-white rounded-md">
                       <span className="hidden md:block">Visit</span>
                       <Image
                         className="h-3.5"

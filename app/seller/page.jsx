@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-import { assets } from "@/assets/assets";
+import { assets } from "@/public/assets/assets";
 import Image from "next/image";
 
 const AddProduct = () => {
@@ -41,7 +41,7 @@ const AddProduct = () => {
                 />
               </label>
             ))}
-
+            <p className="text-base font-light">Maximum size: 1080x1080</p>
           </div>
         </div>
         <div className="flex flex-col gap-1 max-w-md">
@@ -86,13 +86,9 @@ const AddProduct = () => {
               onChange={(e) => setCategory(e.target.value)}
               defaultValue={category}
             >
-              <option value="Earphone">Earphone</option>
-              <option value="Headphone">Headphone</option>
-              <option value="Watch">Watch</option>
-              <option value="Smartphone">Smartphone</option>
-              <option value="Laptop">Laptop</option>
-              <option value="Camera">Camera</option>
-              <option value="Accessories">Accessories</option>
+              <option value="Premium">Premium</option>
+              <option value="Standard">Standard</option>
+              <option value="Ceremonial">Ceremonial</option>
             </select>
           </div>
           <div className="flex flex-col gap-1 w-32">
@@ -124,7 +120,7 @@ const AddProduct = () => {
             />
           </div>
         </div>
-        <button type="submit" className="px-8 py-2.5 bg-orange-600 text-white font-medium rounded">
+        <button type="submit" className="px-8 py-2.5 bg-green-600 text-white font-medium rounded">
           ADD
         </button>
       </form>

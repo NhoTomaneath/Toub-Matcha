@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { assets } from '../../assets/assets';
+import { assets } from '@/public/assets/assets';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
@@ -23,7 +23,7 @@ const SideBar = () => {
                         <div
                             className={
                                 `flex items-center py-3 px-4 gap-3 ${isActive
-                                    ? "border-r-4 md:border-r-[6px] bg-orange-600/10 border-orange-500/90"
+                                    ? "border-r-4 md:border-r-[6px] bg-green-600/10 border-green-700"
                                     : "hover:bg-gray-100/90 border-white"
                                 }`
                             }
