@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    eslint: {
+        // Skip ESLint during builds to avoid RushStack patch error in CI/deploy
+        ignoreDuringBuilds: true,
+    },
     images: {
         remotePatterns: [
             {
