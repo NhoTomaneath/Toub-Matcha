@@ -37,7 +37,7 @@ export const AppContextProvider = (props) => {
 
         const token = await getToken()
 
-        const {data} = await axios.get('/api/user/data', { headers: { Authorization: 'Bearer ${token}'}})
+        const {data} = await axios.get('/api/user/data', { headers: { Authorization: `Bearer ${token}`}})
 
         if (data.success){
             setUserData(data.user)
@@ -48,6 +48,7 @@ export const AppContextProvider = (props) => {
         
         
        } catch (error){
+            console.error("Context Error:", error)
             toast.error(error.message)
 
        }

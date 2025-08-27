@@ -8,19 +8,30 @@ export async function GET(request){
     try{
         
         const {userId} = getAuth(request)
+        
+        if (!userId) {
+            return NextResponse.json({success: false, message: "User not authenticated"})
+        }
 
         await connectDB()
-        const user = await User.findById(userId)
+        let user = await User.findById(userId)
 
         if(!user){
-            return NextResponse.json({success: false, message: "User Not Found"})
-
+            // Create new user if not found
+            user = await User.create({
+                _id: userId,
+                name: "New User",
+                email: "user@example.com",
+                imageURL: "",
+                cartItems: {}
+            })
         }
 
         return NextResponse.json({success:true, user})
 
 
     }catch (error){
+        console.error("API Error:", error)
         return NextResponse.json({success: false, message: error.message})
     }
 
