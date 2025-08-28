@@ -2,7 +2,7 @@ import React from "react";
 
 const NewsLetter = () => {
   return (
-    <div className="flex flex-col items-center justify-center text-center space-y-2 pt-8 pb-14">
+    <div id="subscribe" className="flex flex-col items-center justify-center text-center space-y-2 pt-8 pb-14">
       <h1 className="md:text-4xl text-2xl font-medium">
         Subscribe now & get 5% off
       </h1>

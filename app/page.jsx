@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useEffect } from "react";
 import HeaderSlider from "@/components/HeaderSlider";
 import HomeProducts from "@/components/HomeProducts";
 import Banner from "@/components/Banner";
@@ -9,6 +9,18 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const Home = () => {
+  useEffect(() => {
+    // Handle hash navigation for subscribe section
+    if (window.location.hash === '#subscribe') {
+      const subscribeSection = document.getElementById('subscribe');
+      if (subscribeSection) {
+        setTimeout(() => {
+          subscribeSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, []);
+
   return (
     <>
       <Navbar/>

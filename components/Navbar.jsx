@@ -31,9 +31,20 @@ const Navbar = () => {
         <Link href="/about" className="hover:text-gray-900 transition">
           About Us
         </Link>
-        <Link href="/" className="hover:text-gray-900 transition">
-          Contact
-        </Link>
+                 <button 
+           onClick={() => {
+             const subscribeSection = document.getElementById('subscribe');
+             if (subscribeSection) {
+               subscribeSection.scrollIntoView({ behavior: 'smooth' });
+             } else {
+               // If not on home page, navigate to home page first
+               router.push('/#subscribe');
+             }
+           }}
+           className="hover:text-gray-900 transition cursor-pointer"
+         >
+           Contact
+         </button>
 
         {isSeller && <button onClick={() => router.push('/seller')} className="text-xs border px-4 py-1.5 rounded-full">Seller Dashboard</button>}
 
