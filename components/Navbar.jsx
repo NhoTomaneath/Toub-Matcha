@@ -1,15 +1,17 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import { assets, BagIcon, CartIcon, HomeIcon } from "@/public/assets/assets";
 import Link from "next/link"
 import { useAppContext } from "@/context/AppContext";
 import Image from "next/image";
 import { useClerk, UserButton } from "@clerk/nextjs"
+import SearchModal from "./SearchModal";
 
 const Navbar = () => {
 
   const { isSeller, router, user } = useAppContext();
   const { openSignIn } = useClerk();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <nav className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-300 text-gray-700">
@@ -38,7 +40,12 @@ const Navbar = () => {
       </div>
 
       <ul className="hidden md:flex items-center gap-4 ">
-        <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
+        <button
+          onClick={() => setIsSearchOpen(true)}
+          className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+        >
+          <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
+        </button>
         {
           user
             ? <> 
@@ -59,6 +66,12 @@ const Navbar = () => {
       </ul>
       
       <div className="flex items-center md:hidden gap-3">
+        <button
+          onClick={() => setIsSearchOpen(true)}
+          className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+        >
+          <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
+        </button>
         {isSeller && <button onClick={() => router.push('/seller')} className="text-xs border px-4 py-1.5 rounded-full">Seller Dashboard</button>}
         {
           user
@@ -84,6 +97,12 @@ const Navbar = () => {
             </button>
         }
       </div>
+      
+      {/* Search Modal */}
+      <SearchModal 
+        isOpen={isSearchOpen} 
+        onClose={() => setIsSearchOpen(false)} 
+      />
     </nav>
   );
 };
