@@ -27,7 +27,6 @@ const OrderSummary = () => {
     } catch (error) {
       toast.error(error.message)
     }
-    
   }
 
   const handleAddressSelect = (address) => {
