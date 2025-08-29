@@ -6,7 +6,6 @@ import User from "@/models/User";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-
 export async function POST(request){
     try {
         const {userId} = getAuth(request)
@@ -38,17 +37,17 @@ export async function POST(request){
             address,
             items,
             amount: amount + Math.floor(amount*0.02),
-            data: Date.now()
+            date: Date.now()
         })
 
-        await  inngest.send({
+        await inngest.send({
             name: 'order/created',
             data:{
                 userId,
                 address,
                 items,
                 amount: amount + Math.floor(amount*0.02),
-                data: Date.now()
+                date: Date.now()
             }
         })
 
@@ -64,7 +63,5 @@ export async function POST(request){
     } catch (error) {
         console.log(error)
         return NextResponse.json({success:false, message:error.message})
-
-        
     }
 }

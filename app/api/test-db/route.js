@@ -1,43 +1,51 @@
 import connectDB from "@/config/db";
 import User from "@/models/User";
+import Order from "@/models/Order";
+import Product from "@/models/Product";
+import Address from "@/models/Address";
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 export async function GET() {
     try {
-        console.log("Testing database connection...")
+        await connectDB();
         
-        // Test connection
-        await connectDB()
-        console.log("Database connected successfully!")
+        // Test if models are registered
+        const models = {
+            user: mongoose.models.user,
+            order: mongoose.models.order,
+            product: mongoose.models.product,
+            address: mongoose.models.address
+        };
         
-        // Test user creation
-        const testUser = await User.create({
-            _id: "test-user-" + Date.now(),
-            name: "Test User",
-            email: "test@example.com",
-            imageURL: "",
-            cartItems: {}
-        })
-        
-        console.log("Test user created:", testUser)
-        
-        // Count all users
-        const userCount = await User.countDocuments()
-        console.log("Total users in database:", userCount)
+        // Test basic queries
+        const userCount = await User.countDocuments();
+        const orderCount = await Order.countDocuments();
+        const productCount = await Product.countDocuments();
+        const addressCount = await Address.countDocuments();
         
         return NextResponse.json({
             success: true,
             message: "Database connection successful",
-            testUser: testUser,
-            totalUsers: userCount
-        })
-        
+            models: {
+                user: !!models.user,
+                order: !!models.order,
+                product: !!models.product,
+                address: !!models.address
+            },
+            counts: {
+                users: userCount,
+                orders: orderCount,
+                products: productCount,
+                addresses: addressCount
+            }
+        });
     } catch (error) {
-        console.error("Database test error:", error)
+        console.error("Test DB error:", error);
         return NextResponse.json({
             success: false,
             message: error.message,
-            stack: error.stack
-        })
+            error: error.toString()
+        });
     }
 }
