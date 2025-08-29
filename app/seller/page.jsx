@@ -89,7 +89,7 @@ const AddProduct = () => {
                 />
               </label>
             ))}
-            <p className="text-base font-light">Maximum size: 1080x1080</p>
+            <p className="text-base font-light">Recommended size 1080x1080, up to 10MB.</p>
           </div>
         </div>
         <div className="flex flex-col gap-1 max-w-md">

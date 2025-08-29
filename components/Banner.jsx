@@ -8,7 +8,7 @@ const Banner = () => {
       <Image
         className="max-w-56"
         src={assets.daming_yutaka_image}
-        alt="jbl_soundbox_image"
+        alt="matcha_pic"
       />
       <div className="flex flex-col items-center justify-center text-center space-y-2 px-4 md:px-0">
         <h2 className="text-2xl md:text-3xl font-semibold max-w-[290px]">
@@ -25,12 +25,12 @@ const Banner = () => {
       <Image
         className="hidden md:block max-w-80"
         src={assets.chaura_kago_image}
-        alt="md_controller_image"
+        alt="matcha pic"
       />
       <Image
         className="md:hidden"
         src={assets.kyujitsu_hojicha_image}
-        alt="sm_controller_image"
+        alt="matcha pic"
       />
     </div>
   );
