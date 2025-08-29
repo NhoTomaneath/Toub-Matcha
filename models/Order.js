@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
 
+// Clear any existing Order model from cache
+if (mongoose.models.order) {
+    delete mongoose.models.order;
+}
+
 const orderSchema = new mongoose.Schema({
     userId: {type:String, required: true, ref:'user'},
     items:[{
@@ -11,6 +16,8 @@ const orderSchema = new mongoose.Schema({
     status: {type:String, required:true, default: 'Order Placed' },
     date: {type:Number, required:true},
 })
+
+console.log('Order schema fields:', Object.keys(orderSchema.paths));
 
 const Order = mongoose.models.order || mongoose.model('order', orderSchema)
 export default Order

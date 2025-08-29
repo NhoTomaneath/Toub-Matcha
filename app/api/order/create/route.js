@@ -31,14 +31,20 @@ export async function POST(request){
             }
         }
 
-        // Create the order in database
-        const order = await Order.create({
+        // Debug: Log the order data being sent
+        const orderData = {
             userId,
             address,
             items,
             amount: amount + Math.floor(amount*0.02),
             date: Date.now()
-        })
+        };
+        
+        console.log('Order data being sent to Order.create:', JSON.stringify(orderData, null, 2));
+        console.log('Order model schema fields:', Object.keys(Order.schema.paths));
+
+        // Create the order in database
+        const order = await Order.create(orderData)
 
         await inngest.send({
             name: 'order/created',
@@ -61,7 +67,8 @@ export async function POST(request){
 
         return NextResponse.json({success:true, message:'Order Placed'})
     } catch (error) {
-        console.log(error)
+        console.log('Order creation error:', error)
+        console.log('Error details:', error.message)
         return NextResponse.json({success:false, message:error.message})
     }
 }
