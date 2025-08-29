@@ -39,13 +39,14 @@ export async function POST(request){
             amount: amount + Math.floor(amount*0.02),
             date: Date.now()
         };
+
         
         console.log('Order data being sent to Order.create:', JSON.stringify(orderData, null, 2));
         console.log('Order model schema fields:', Object.keys(Order.schema.paths));
 
         // Create the order in database
         const order = await Order.create(orderData)
-
+        /*
         await inngest.send({
             name: 'order/created',
             data:{
@@ -56,6 +57,7 @@ export async function POST(request){
                 date: Date.now()
             }
         })
+        */
 
         // clear user cart
         const user = await User.findById(userId)
